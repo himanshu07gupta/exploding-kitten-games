@@ -9,10 +9,12 @@ const {userSchema} = require("../db/userschema.js");
 const { authmiddleware } = require("../authmiddleware");
 
 
-
 const userRepository = client.fetchRepository(userSchema);
+
 (async()=>{
+    
     await userRepository.createIndex();
+    
 })()
 
 /*  signup */
@@ -34,7 +36,7 @@ userrouter.post("/signup",async function(req,res){
  })}
 
  const persons = await userRepository.search()
- .where('email').equals(req.email).return.first()
+ .where('email').equals(req.body.email).return.first()
 
   if(persons){
     return res.status(411).json({
@@ -43,8 +45,8 @@ userrouter.post("/signup",async function(req,res){
   }
   
   let user = await userRepository.createEntity({
-    firstname : req.body.firstname,
-    lastname : req.body.lastname,
+    firstname : req.body.fname,
+    lastname : req.body.lname,
     email: req.body.email,
     password: req.body.password,
     score: 0,
@@ -57,7 +59,7 @@ userrouter.post("/signup",async function(req,res){
 
  res.json({
     message : "data is added succesfully",
-    token : token
+    token : "Bearer "+token
 })
 
 })
@@ -93,17 +95,17 @@ else{
     
      res.json({
         email : persons.email,
-        token : token
+        token : "Bearer "+token
      })
 }
 })
 //////////////////////////////////
-userrouter.use(authmiddleware)
+// userrouter.use(authmiddleware)
 /*  Update score */
-userrouter.put("/updatescore",async function(req,res){
+userrouter.put("/updatescore",authmiddleware,async function(req,res){
     const persons = await userRepository.fetch(req.id)
     persons.score = persons.score+1;
-    await userRepository.save(user);
+    await userRepository.save(persons);
 
     res.json({
         "current score" : persons.score
@@ -113,11 +115,15 @@ userrouter.put("/updatescore",async function(req,res){
 /////////////////////////
 /* get highest score */
 userrouter.get("/highestscore", async function(req,res){
-    const users = await userRepository.search()
-    .sortDescending('score')
-    .return.page(0, 10)
-    .execute();
-
+    const users = await userRepository.search().return.all()
+   
+    function getValue(user) {
+        return user.score;
+      }
+      
+      // Sorting the array of objects based on the value returned by the function
+      users.sort((a, b) => getValue(a) - getValue(b));
+    
     res.json({
         "users" : users.map(function(user){
             return({

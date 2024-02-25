@@ -1,5 +1,5 @@
 const express = require("express");
-const { JWT_secret } = require("./config");
+const { JWT_secret } = require("./secret_key");
 const jwt = require("jsonwebtoken")
 
 ///// verify that it is write token..

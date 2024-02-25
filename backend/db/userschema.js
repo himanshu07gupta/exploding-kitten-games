@@ -1,5 +1,6 @@
 // // use redis.om will help to work in json formaat  but by the way under the hood data is just key-value pait
-const { Entity, Schema } = require("redis");
+// const { Entity, Schema } = require("redis");
+const {Entity,Schema} = require("redis-om")
 const redis  = require("redis")
 
 class User extends Entity {}
@@ -11,5 +12,8 @@ class User extends Entity {}
     score : {type : 'number',sortable: true}
 })
 
-module.exports=  userSchema
 
+
+module.exports= {
+    userSchema
+}
