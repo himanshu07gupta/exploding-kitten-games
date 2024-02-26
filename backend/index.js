@@ -19,6 +19,8 @@ app.use(cors())
 
 app.use("/kittenapp/v1",mainrouter)
 
+console.log("I am working");
+
 // const swaggerDocument = YAML.load('api.yaml')
 // app.use('/', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
 
