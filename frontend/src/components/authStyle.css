@@ -1,0 +1,50 @@
+.signup-container,
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.signup-content,
+.login-content {
+    background-color: #f0f0f0;
+    padding: 20px;
+    border-radius: 5px;
+    max-width: 300px;
+    width: 100%;
+}
+
+.signup-content h1,
+.login-content h1 {
+    margin-top: 0;
+}
+
+.signup-content form div,
+.login-content form div {
+    margin-bottom: 10px;
+}
+
+.signup-content label,
+.login-content label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.signup-content input,
+.login-content input {
+    width: 100%;
+    padding: 5px;
+}
+
+.signup-content button,
+.login-content button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+    border-radius: 3px;
+}
