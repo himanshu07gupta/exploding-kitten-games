@@ -47,6 +47,7 @@
  we can take some help of json format here. why the way udere the hood the process is only key-value pair.
 */
 
+
 const {Client} = require("redis-om")
 const {config} = require("dotenv")
 config()
