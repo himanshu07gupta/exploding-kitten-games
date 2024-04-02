@@ -1,12 +1,9 @@
-// const {createClient} = require("redis")
+const {createClient} = require("redis")
 
- 
-
-
-// client =  createClient({
+ // client =  createClient({
 //     password: 'YeewafjoxTnoGgk77oEPkWuBbLxepMZc',
 //     socket: {
-//         host: 'redis-13267.c301.ap-south-1-1.ec2.cloud.redislabs.com',
+//         host: 'redis-13657.c11.us-east-1-2.ec2.cloud.redislabs.com:13657',
 //         port: 13267
 
 //     }
@@ -55,12 +52,12 @@ config()
 const client = new Client();
 
 (async () => {
-    await client.open(`redis://default:YeewafjoxTnoGgk77oEPkWuBbLxepMZc@redis-13267.c301.ap-south-1-1.ec2.cloud.redislabs.com:13267`)
+    await client.open(`redis://default:pOWu08g495uWlibfeMikQItcBK2mOtHf@redis-13657.c11.us-east-1-2.ec2.cloud.redislabs.com:13657`)
     // await client.set('key', 'value');
 })();
 ;
 
-module.exports= {client }
+module.exports= {client}
 
 
 
