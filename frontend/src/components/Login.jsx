@@ -13,7 +13,7 @@ function Login() {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const response = await fetch(`http://localhost:3000/kittenapp/v1/user/signin`, {
+        const response = await fetch(`http://localhost:5000/kittenapp/v1/user/signin`, {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
